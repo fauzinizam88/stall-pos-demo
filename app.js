@@ -9,11 +9,25 @@ const products = [
     variants: ['Kampung', 'Ayam', 'Ikan Masin', 'Daging', 'Udang', 'Kerang', 'Sotong'],
     selectedVariant: 'Kampung'
   },
-  {id:'mee-goreng',n:'Mee Goreng',c:'Mee & lain-lain',d:'Mee goreng gaya gerai.',p:6,e:'🍜'},
-  {id:'kuey-teow-goreng',n:'Kuey Teow Goreng',c:'Mee & lain-lain',d:'Kuey teow goreng panas.',p:6,e:'🥢'},
-  {id:'mee-kerang',n:'Kuey Teow / Mee Kerang',c:'Mee & lain-lain',d:'Pilih kuey teow atau mee bersama kerang.',p:6,e:'🦪'},
-  {id:'char-kuey-teow',n:'Char Kuey Teow Udang / Kerang',c:'Mee & lain-lain',d:'Pilih udang atau kerang.',p:6,e:'🍤'},
-  {id:'bandung',n:'Mee / Kuey Teow Bandung',c:'Mee & lain-lain',d:'Pilih mee atau kuey teow bandung.',p:6,e:'🥣'},
+  {
+    id: 'mee-kuey-teow',
+    n: 'Mee & Kuey Teow',
+    c: 'Mee & lain-lain',
+    d: 'Pilih jenis mee atau kuey teow sebelum menambah ke troli.',
+    p: 6,
+    e: '🍜',
+    variants: [
+      'Mee Goreng',
+      'Kuey Teow Goreng',
+      'Mee Kerang',
+      'Kuey Teow Kerang',
+      'Char Kuey Teow Udang',
+      'Char Kuey Teow Kerang',
+      'Mee Bandung',
+      'Kuey Teow Bandung'
+    ],
+    selectedVariant: 'Mee Goreng'
+  },
   {id:'chicken-chop',n:'Chicken Chop',c:'Western',d:'Hidangan chicken chop bersama sos.',p:12,e:'🍗'},
   {id:'nasi-chicken-chop',n:'Nasi Goreng Chicken Chop',c:'Western',d:'Nasi goreng bersama chicken chop.',p:15,e:'🍛'},
   {id:'tambah-telur',n:'Tambah Telur',c:'Tambahan',d:'Telur tambahan untuk mana-mana hidangan.',p:1,e:'🍳'},
