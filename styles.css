@@ -29,11 +29,13 @@ main{padding:15px 14px 24px}
 .hero-actions{position:relative;display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
 .hero .btn.light{background:#fff;color:var(--green-dark)}
 .hero .btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.34)}
-.promo{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1px solid #f2cd82;background:#fff9df;border-radius:16px;margin:0 0 14px}
+.promo{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1px solid #f2cd82;background:#fff9df;border-radius:16px;margin:0 0 10px}
+.promo.drinks{border-color:#a9d3b4;background:#edf8ef}
 .promo .egg{font-size:26px}
 .promo b{display:block;color:var(--green-dark)}
 .promo small{color:#7e6232}
-.chips{display:flex;gap:8px;overflow:auto;padding:2px 0 13px;scrollbar-width:none}
+.promo.drinks small{color:#4f6d58}
+.chips{display:flex;gap:8px;overflow:auto;padding:4px 0 13px;scrollbar-width:none}
 .chip{border:1px solid var(--line);background:var(--surface);padding:9px 13px;border-radius:99px;white-space:nowrap;color:var(--ink);font-weight:750}
 .chip.on{background:var(--green);border-color:var(--green);color:#fff}
 .menu{display:grid;gap:10px}
@@ -42,6 +44,7 @@ main{padding:15px 14px 24px}
 .food h3{font-size:14px;line-height:1.22;margin:0 0 4px}
 .food p{font-size:11px;color:var(--muted);margin:0 0 5px}
 .price{font-weight:900;color:var(--green)}
+.price-note{display:block;margin-top:1px;color:var(--orange);font-size:10px;font-weight:800}
 .qty{display:flex;align-items:center;gap:7px;background:#edf2e9;border-radius:99px;padding:4px}
 .qty button{border:0;background:#fff;border-radius:50%;width:31px;height:31px;font-size:18px;box-shadow:0 2px 6px rgba(0,0,0,.08);color:var(--green-dark)}
 .qty span{min-width:15px;text-align:center;font-weight:900}
