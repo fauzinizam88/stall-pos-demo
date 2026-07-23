@@ -44,7 +44,6 @@ const products = [
 ];
 
 const cart = Object.create(null);
-let cat = 'Semua';
 let type = 'dine';
 
 const money = value => new Intl.NumberFormat('en-MY', {
@@ -129,15 +128,7 @@ function renderProduct(product) {
 }
 
 function render() {
-  const categories = ['Semua', ...new Set(products.map(product => product.c))];
-  chips.innerHTML = categories.map(category =>
-    `<button class="chip ${category === cat ? 'on' : ''}" onclick="cat='${category.replace(/'/g, "\\'")}';render()">${category}</button>`
-  ).join('');
-
-  menuList.innerHTML = products
-    .filter(product => cat === 'Semua' || product.c === cat)
-    .map(renderProduct)
-    .join('');
+  menuList.innerHTML = products.map(renderProduct).join('');
 
   const lines = selectedLines().map(line =>
     `<div class="line"><span><b>${line.name}</b><br><small class="muted">${line.quantity} × ${money(line.price)}${line.product.drink ? ` · ${type === 'take' ? 'bungkus' : 'minum di gerai'}` : ''}</small></span><b>${money(line.quantity * line.price)}</b></div>`
