@@ -1,92 +1,218 @@
-const foods=[
-{id:1,n:'Nasi Goreng Kampung',c:'Nasi',d:'Pilihan nasi goreng gerai.',p:6,e:'🍚',q:0},
-{id:2,n:'Nasi Goreng Ayam',c:'Nasi',d:'Nasi goreng bersama ayam.',p:6,e:'🍗',q:0},
-{id:3,n:'Nasi Goreng Ikan Masin',c:'Nasi',d:'Nasi goreng berperisa ikan masin.',p:6,e:'🐟',q:0},
-{id:4,n:'Nasi Goreng Daging',c:'Nasi',d:'Nasi goreng bersama daging.',p:6,e:'🥩',q:0},
-{id:5,n:'Nasi Goreng Udang',c:'Nasi',d:'Nasi goreng bersama udang.',p:6,e:'🍤',q:0},
-{id:6,n:'Nasi Goreng Sotong',c:'Nasi',d:'Nasi goreng bersama sotong.',p:6,e:'🦑',q:0},
-{id:7,n:'Mee Goreng',c:'Mee & lain-lain',d:'Mee goreng gaya gerai.',p:6,e:'🍜',q:0},
-{id:8,n:'Kuey Teow Goreng',c:'Mee & lain-lain',d:'Kuey teow goreng panas.',p:6,e:'🥢',q:0},
-{id:9,n:'Kuey Teow / Mee Kerang',c:'Mee & lain-lain',d:'Pilih kuey teow atau mee bersama kerang.',p:6,e:'🦪',q:0},
-{id:10,n:'Char Kuey Teow Udang / Kerang',c:'Mee & lain-lain',d:'Pilih udang atau kerang.',p:6,e:'🍤',q:0},
-{id:11,n:'Mee / Kuey Teow Bandung',c:'Mee & lain-lain',d:'Pilih mee atau kuey teow bandung.',p:6,e:'🥣',q:0},
-{id:12,n:'Chicken Chop',c:'Western',d:'Hidangan chicken chop bersama sos.',p:12,e:'🍗',q:0},
-{id:13,n:'Nasi Goreng Chicken Chop',c:'Western',d:'Nasi goreng bersama chicken chop.',p:15,e:'🍛',q:0},
-{id:14,n:'Tambah Telur',c:'Tambahan',d:'Telur tambahan untuk mana-mana hidangan.',p:1,e:'🍳',q:0},
-{id:15,n:'Teh Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'🧋',q:0},
-{id:16,n:'Teh O Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'🥤',q:0},
-{id:17,n:'Nescafe Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'☕',q:0},
-{id:18,n:'Milo Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'🍫',q:0},
-{id:19,n:'Kopi Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'☕',q:0},
-{id:20,n:'Limau Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'🍋',q:0},
-{id:21,n:'Limau Asam Boi Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'🍹',q:0}
+const products = [
+  {
+    id: 'nasi-goreng',
+    n: 'Nasi Goreng',
+    c: 'Nasi',
+    d: 'Pilih jenis nasi goreng sebelum menambah ke troli.',
+    p: 6,
+    e: '🍚',
+    variants: ['Kampung', 'Ayam', 'Ikan Masin', 'Daging', 'Udang', 'Kerang', 'Sotong'],
+    selectedVariant: 'Kampung'
+  },
+  {id:'mee-goreng',n:'Mee Goreng',c:'Mee & lain-lain',d:'Mee goreng gaya gerai.',p:6,e:'🍜'},
+  {id:'kuey-teow-goreng',n:'Kuey Teow Goreng',c:'Mee & lain-lain',d:'Kuey teow goreng panas.',p:6,e:'🥢'},
+  {id:'mee-kerang',n:'Kuey Teow / Mee Kerang',c:'Mee & lain-lain',d:'Pilih kuey teow atau mee bersama kerang.',p:6,e:'🦪'},
+  {id:'char-kuey-teow',n:'Char Kuey Teow Udang / Kerang',c:'Mee & lain-lain',d:'Pilih udang atau kerang.',p:6,e:'🍤'},
+  {id:'bandung',n:'Mee / Kuey Teow Bandung',c:'Mee & lain-lain',d:'Pilih mee atau kuey teow bandung.',p:6,e:'🥣'},
+  {id:'chicken-chop',n:'Chicken Chop',c:'Western',d:'Hidangan chicken chop bersama sos.',p:12,e:'🍗'},
+  {id:'nasi-chicken-chop',n:'Nasi Goreng Chicken Chop',c:'Western',d:'Nasi goreng bersama chicken chop.',p:15,e:'🍛'},
+  {id:'tambah-telur',n:'Tambah Telur',c:'Tambahan',d:'Telur tambahan untuk mana-mana hidangan.',p:1,e:'🍳'},
+  {
+    id: 'minuman',
+    n: 'Minuman',
+    c: 'Minuman',
+    d: 'Pilih jenis minuman. RM2.00 di gerai atau RM3.00 bungkus.',
+    drink: true,
+    e: '🧋',
+    variants: ['Teh Ais', 'Teh O Ais', 'Nescafe Ais', 'Milo Ais', 'Kopi Ais', 'Limau Ais', 'Limau Asam Boi Ais'],
+    selectedVariant: 'Teh Ais'
+  }
 ];
-let cat='Semua',type='dine';
-const money=n=>new Intl.NumberFormat('en-MY',{style:'currency',currency:'MYR'}).format(n);
-const unitPrice=item=>item.drink?(type==='take'?3:2):item.p;
-const selected=()=>foods.filter(x=>x.q);
-const total=()=>selected().reduce((sum,item)=>sum+unitPrice(item)*item.q,0);
-const count=()=>selected().reduce((sum,item)=>sum+item.q,0);
 
-function render(){
-  const cats=['Semua',...new Set(foods.map(x=>x.c))];
-  chips.innerHTML=cats.map(x=>`<button class="chip ${x===cat?'on':''}" onclick="cat='${x.replace(/'/g,"\\'")}';render()">${x}</button>`).join('');
-  menuList.innerHTML=foods.filter(x=>cat==='Semua'||x.c===cat).map(x=>{
-    const price=unitPrice(x);
-    const priceNote=x.drink?`<small class="price-note">${type==='take'?'Harga bungkus':'Harga minum di gerai'}</small>`:'';
-    return `<article class="food">
-      <div class="emoji">${x.e}</div>
-      <div><h3>${x.n}</h3><p>${x.d}</p><div class="price">${money(price)} ${priceNote}</div></div>
-      <div class="qty"><button aria-label="Kurangkan ${x.n}" onclick="qty(${x.id},-1)">−</button><span>${x.q}</span><button aria-label="Tambah ${x.n}" onclick="qty(${x.id},1)">+</button></div>
+const cart = Object.create(null);
+let cat = 'Semua';
+let type = 'dine';
+
+const money = value => new Intl.NumberFormat('en-MY', {
+  style: 'currency',
+  currency: 'MYR'
+}).format(value);
+
+const productById = id => products.find(product => product.id === id);
+const unitPrice = product => product.drink ? (type === 'take' ? 3 : 2) : product.p;
+const cartKey = (product, variant = product.selectedVariant) => product.variants ? `${product.id}::${variant}` : product.id;
+const quantityFor = product => cart[cartKey(product)] || 0;
+
+function selectedLines() {
+  return Object.entries(cart)
+    .filter(([, quantity]) => quantity > 0)
+    .map(([key, quantity]) => {
+      const [productId, variant] = key.split('::');
+      const product = productById(productId);
+      return {
+        key,
+        product,
+        variant: variant || '',
+        quantity,
+        price: unitPrice(product),
+        name: variant ? `${product.n} · ${variant}` : product.n
+      };
+    });
+}
+
+const total = () => selectedLines().reduce((sum, line) => sum + line.price * line.quantity, 0);
+const count = () => selectedLines().reduce((sum, line) => sum + line.quantity, 0);
+
+function variantSummary(product) {
+  const lines = selectedLines().filter(line => line.product.id === product.id);
+  if (!lines.length) {
+    return '<small class="variant-hint">Pilih jenis, kemudian tekan + untuk tambah.</small>';
+  }
+
+  return `<div class="chosen-summary"><b>Dalam troli</b>${lines.map(line =>
+    `<span>${line.variant} × ${line.quantity}</span>`
+  ).join('')}</div>`;
+}
+
+function renderProduct(product) {
+  const price = unitPrice(product);
+  const priceNote = product.drink
+    ? `<small class="price-note">${type === 'take' ? 'Harga bungkus' : 'Harga minum di gerai'}</small>`
+    : '';
+
+  if (product.variants) {
+    const options = product.variants.map(variant =>
+      `<option value="${variant}" ${variant === product.selectedVariant ? 'selected' : ''}>${variant}</option>`
+    ).join('');
+
+    return `<article class="food has-variants">
+      <div class="emoji">${product.e}</div>
+      <div><h3>${product.n}</h3><p>${product.d}</p><div class="price">${money(price)} ${priceNote}</div></div>
+      <div class="variant-panel">
+        <label for="variant-${product.id}">Pilih jenis</label>
+        <div class="variant-controls">
+          <select class="variant-select" id="variant-${product.id}" onchange="chooseVariant('${product.id}', this.value)">${options}</select>
+          <div class="qty">
+            <button aria-label="Kurangkan ${product.n}" onclick="qty('${product.id}',-1)">−</button>
+            <span>${quantityFor(product)}</span>
+            <button aria-label="Tambah ${product.n}" onclick="qty('${product.id}',1)">+</button>
+          </div>
+        </div>
+        ${variantSummary(product)}
+      </div>
     </article>`;
-  }).join('');
-  const lines=selected().map(x=>{
-    const price=unitPrice(x);
-    return `<div class="line"><span><b>${x.n}</b><br><small class="muted">${x.q} × ${money(price)}${x.drink?` · ${type==='take'?'bungkus':'minum di gerai'}`:''}</small></span><b>${money(x.q*price)}</b></div>`;
-  }).join('')||'<p class="muted">Troli anda masih kosong.</p>';
-  cartLines.innerHTML=lines+`<div class="line total"><span>Jumlah</span><span>${money(total())}</span></div>`;
-  paymentItems.innerHTML=lines;
-  paymentTotal.textContent=money(total());
-  cartSummary.textContent=`${count()} item · ${money(total())}`;
-  cartMeta.textContent=type==='dine'?`Meja ${tableNo.value||'—'} · Makan/minum di sini`:'Pesanan bungkus';
-  cartBar.style.display=document.querySelector('.view.active').id==='menu'&&count()?'flex':'none';
+  }
+
+  return `<article class="food">
+    <div class="emoji">${product.e}</div>
+    <div><h3>${product.n}</h3><p>${product.d}</p><div class="price">${money(price)} ${priceNote}</div></div>
+    <div class="qty">
+      <button aria-label="Kurangkan ${product.n}" onclick="qty('${product.id}',-1)">−</button>
+      <span>${quantityFor(product)}</span>
+      <button aria-label="Tambah ${product.n}" onclick="qty('${product.id}',1)">+</button>
+    </div>
+  </article>`;
 }
 
-function qty(id,d){const x=foods.find(f=>f.id===id);x.q=Math.max(0,Math.min(20,x.q+d));render()}
-function show(id){
-  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));
-  document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('on',b.dataset.view===id));
-  window.scrollTo({top:0,behavior:'smooth'});render()
+function render() {
+  const categories = ['Semua', ...new Set(products.map(product => product.c))];
+  chips.innerHTML = categories.map(category =>
+    `<button class="chip ${category === cat ? 'on' : ''}" onclick="cat='${category.replace(/'/g, "\\'")}';render()">${category}</button>`
+  ).join('');
+
+  menuList.innerHTML = products
+    .filter(product => cat === 'Semua' || product.c === cat)
+    .map(renderProduct)
+    .join('');
+
+  const lines = selectedLines().map(line =>
+    `<div class="line"><span><b>${line.name}</b><br><small class="muted">${line.quantity} × ${money(line.price)}${line.product.drink ? ` · ${type === 'take' ? 'bungkus' : 'minum di gerai'}` : ''}</small></span><b>${money(line.quantity * line.price)}</b></div>`
+  ).join('') || '<p class="muted">Troli anda masih kosong.</p>';
+
+  cartLines.innerHTML = lines + `<div class="line total"><span>Jumlah</span><span>${money(total())}</span></div>`;
+  paymentItems.innerHTML = lines;
+  paymentTotal.textContent = money(total());
+  cartSummary.textContent = `${count()} item · ${money(total())}`;
+  cartMeta.textContent = type === 'dine' ? `Meja ${tableNo.value || '—'} · Makan/minum di sini` : 'Pesanan bungkus';
+  cartBar.style.display = document.querySelector('.view.active').id === 'menu' && count() ? 'flex' : 'none';
 }
-function setType(v){
-  type=v;dineBtn.classList.toggle('on',v==='dine');takeBtn.classList.toggle('on',v==='take');
-  tableField.style.display=v==='dine'?'block':'none';render()
+
+function chooseVariant(productId, variant) {
+  const product = productById(productId);
+  if (!product || !product.variants.includes(variant)) return;
+  product.selectedVariant = variant;
+  render();
 }
-function placeOrder(){
-  if(!count())return toast('Tambah sekurang-kurangnya satu menu');
-  if(!customerName.value.trim())return toast('Masukkan nama pelanggan');
-  if(type==='dine'&&!tableNo.value.trim())return toast('Masukkan nombor meja');
-  show('payment');toast('Pesanan berjaya dihantar')
+
+function qty(productId, change) {
+  const product = productById(productId);
+  if (!product) return;
+  const key = cartKey(product);
+  const nextQuantity = Math.max(0, Math.min(20, (cart[key] || 0) + change));
+  if (nextQuantity === 0) delete cart[key];
+  else cart[key] = nextQuantity;
+  render();
 }
-function paid(){
-  payBadge.textContent='Bayaran dihantar';payBadge.className='status pending';
-  payStep.classList.add('done');payStep.querySelector('.dot').textContent='✓';
-  payStep.querySelector('small').textContent='Menunggu pengesahan manual pemilik gerai.';
-  paidBtn.disabled=true;paidBtn.textContent='Pengesahan dihantar';toast('Maklumat bayaran dihantar')
+
+function show(id) {
+  document.querySelectorAll('.view').forEach(view => view.classList.toggle('active', view.id === id));
+  document.querySelectorAll('.bottom button').forEach(button => button.classList.toggle('on', button.dataset.view === id));
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  render();
 }
-function verifyPayment(){
-  adminBadge.textContent='Bayaran disahkan';adminBadge.className='status paid';
-  adminActions.innerHTML='<button class="btn success" onclick="this.textContent=\'Sedang disediakan\';toast(\'Penyediaan pesanan dimulakan\')">Mula sediakan</button><button class="btn secondary" onclick="toast(\'Butiran pesanan dibuka\')">Butiran</button>';
-  payBadge.textContent='Bayaran disahkan';payBadge.className='status paid';toast('Bayaran disahkan')
+
+function setType(value) {
+  type = value;
+  dineBtn.classList.toggle('on', value === 'dine');
+  takeBtn.classList.toggle('on', value === 'take');
+  tableField.style.display = value === 'dine' ? 'block' : 'none';
+  render();
 }
-function toast(m){
-  const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
-  clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),1900)
+
+function placeOrder() {
+  if (!count()) return toast('Tambah sekurang-kurangnya satu menu');
+  if (!customerName.value.trim()) return toast('Masukkan nama pelanggan');
+  if (type === 'dine' && !tableNo.value.trim()) return toast('Masukkan nombor meja');
+  show('payment');
+  toast('Pesanan berjaya dihantar');
 }
-function downloadCSV(){
-  const csv='Pesanan,Pelanggan,Jenis,Jumlah,Status\n0723-A7K,Ahmad,Makan di sini,9.00,Disahkan\n0723-B2M,Siti,Bungkus,9.00,Sedang disediakan';
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-  a.download='jualan-gerai-teh-ais-nekman-demo.csv';a.click();toast('CSV demo dimuat turun')
+
+function paid() {
+  payBadge.textContent = 'Bayaran dihantar';
+  payBadge.className = 'status pending';
+  payStep.classList.add('done');
+  payStep.querySelector('.dot').textContent = '✓';
+  payStep.querySelector('small').textContent = 'Menunggu pengesahan manual pemilik gerai.';
+  paidBtn.disabled = true;
+  paidBtn.textContent = 'Pengesahan dihantar';
+  toast('Maklumat bayaran dihantar');
 }
-tableNo.addEventListener('input',render);
+
+function verifyPayment() {
+  adminBadge.textContent = 'Bayaran disahkan';
+  adminBadge.className = 'status paid';
+  adminActions.innerHTML = '<button class="btn success" onclick="this.textContent=\'Sedang disediakan\';toast(\'Penyediaan pesanan dimulakan\')">Mula sediakan</button><button class="btn secondary" onclick="toast(\'Butiran pesanan dibuka\')">Butiran</button>';
+  payBadge.textContent = 'Bayaran disahkan';
+  payBadge.className = 'status paid';
+  toast('Bayaran disahkan');
+}
+
+function toast(message) {
+  const element = document.getElementById('toast');
+  element.textContent = message;
+  element.classList.add('show');
+  clearTimeout(window.tt);
+  window.tt = setTimeout(() => element.classList.remove('show'), 1900);
+}
+
+function downloadCSV() {
+  const csv = 'Pesanan,Pelanggan,Jenis,Jumlah,Status\n0723-A7K,Ahmad,Makan di sini,9.00,Disahkan\n0723-B2M,Siti,Bungkus,9.00,Sedang disediakan';
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(new Blob([csv], {type: 'text/csv'}));
+  link.download = 'jualan-gerai-teh-ais-nekman-demo.csv';
+  link.click();
+  toast('CSV demo dimuat turun');
+}
+
+tableNo.addEventListener('input', render);
 render();
