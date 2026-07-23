@@ -1,0 +1,38 @@
+.live-updated{
+  display:block;
+  margin:-2px 0 12px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.step.current .dot{
+  background:#fff0d2;
+  color:#8a5600;
+  border:1px solid #e7bd67;
+  font-weight:900;
+}
+
+.step.current b{
+  color:#8a5600;
+}
+
+.step.rejected .dot{
+  background:#fdecea;
+  color:var(--red);
+  border:1px solid #e5a6a0;
+  font-weight:900;
+}
+
+.step.rejected b{
+  color:var(--red);
+}
+
+.status.rejected{
+  background:#fdecea;
+  color:var(--red);
+}
+
+.btn:disabled{
+  cursor:not-allowed;
+  opacity:.62;
+}
