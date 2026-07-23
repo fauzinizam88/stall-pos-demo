@@ -7,6 +7,7 @@
 <title>Gerai Teh Ais Nekman | POS Demo</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="variants.css">
+<link rel="stylesheet" href="admin.css">
 </head>
 <body>
 <div class="app">
@@ -23,7 +24,7 @@
     <p>Semak jumlah pesanan dan bayar menggunakan DuitNow QR.</p>
     <div class="hero-actions">
       <button class="btn light" onclick="document.getElementById('menuList').scrollIntoView({behavior:'smooth'})">Mula pilih menu</button>
-      <button class="btn ghost" onclick="show('orders')">Paparan admin</button>
+      <button class="btn ghost" onclick="openAdmin('orders')">Paparan admin</button>
     </div>
   </div>
 
@@ -64,7 +65,10 @@
 </section>
 
 <section id="orders" class="view">
-  <div class="section-title"><div><h2>Pesanan langsung</h2><p>Paparan mudah alih untuk pemilik gerai.</p></div><span class="status pending">2 semakan</span></div>
+  <div class="section-title admin-section-title">
+    <div><h2>Pesanan langsung</h2><p>Paparan mudah alih untuk pemilik gerai.</p></div>
+    <div class="admin-title-actions"><span class="status pending">2 semakan</span><button class="admin-logout" onclick="adminLogout()">Log keluar</button></div>
+  </div>
   <div class="filters"><button class="filter on">Aktif</button><button class="filter">Bayaran</button><button class="filter">Disediakan</button><button class="filter">Sedia</button></div>
   <div id="ordersList">
     <article class="card">
@@ -91,7 +95,10 @@
 </section>
 
 <section id="sales" class="view">
-  <div class="section-title"><div><h2>Ringkasan jualan</h2><p>Pesanan berbayar dan tidak dibatalkan sahaja.</p></div><button class="btn secondary" onclick="downloadCSV()">Eksport CSV</button></div>
+  <div class="section-title admin-section-title">
+    <div><h2>Ringkasan jualan</h2><p>Pesanan berbayar dan tidak dibatalkan sahaja.</p></div>
+    <div class="admin-title-actions"><button class="btn secondary" onclick="downloadCSV()">Eksport CSV</button><button class="admin-logout" onclick="adminLogout()">Log keluar</button></div>
+  </div>
   <div class="metrics">
     <div class="metric"><small>Hari ini</small><strong>RM642.00</strong><span class="muted">84 pesanan</span></div>
     <div class="metric"><small>Purata pesanan</small><strong>RM7.64</strong><span class="muted">Hari ini</span></div>
@@ -120,12 +127,29 @@
 <nav class="bottom">
   <button class="on" data-view="menu" onclick="show('menu')"><span>🍽️</span>Menu</button>
   <button data-view="cart" onclick="show('cart')"><span>🛒</span>Troli</button>
-  <button data-view="orders" onclick="show('orders')"><span>📋</span>Admin</button>
-  <button data-view="sales" onclick="show('sales')"><span>📊</span>Jualan</button>
+  <button data-view="orders" onclick="openAdmin('orders')"><span>🔒</span>Admin</button>
+  <button data-view="sales" onclick="openAdmin('sales')"><span>📊</span>Jualan</button>
 </nav>
 <div id="toast" class="toast">Dikemas kini</div>
 </div>
 
+<div id="adminLoginModal" class="admin-modal" aria-hidden="true">
+  <div class="admin-login-card" role="dialog" aria-modal="true" aria-labelledby="adminLoginTitle">
+    <button class="admin-modal-close" type="button" aria-label="Tutup" onclick="closeAdminLogin()">×</button>
+    <div class="admin-lock-icon">🔒</div>
+    <h2 id="adminLoginTitle">Log masuk admin</h2>
+    <p>Masukkan kata laluan untuk membuka pesanan dan laporan jualan.</p>
+    <form onsubmit="adminLogin(event)">
+      <label for="adminPassword">Kata laluan</label>
+      <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Masukkan kata laluan" required>
+      <div id="adminLoginError" class="admin-login-error" role="alert"></div>
+      <button id="adminLoginButton" class="btn success full" type="submit">Log masuk</button>
+    </form>
+    <small class="admin-demo-note">Perlindungan asas untuk prototaip GitHub Pages sahaja.</small>
+  </div>
+</div>
+
 <script src="app.js"></script>
+<script src="admin-auth.js"></script>
 </body>
 </html>
