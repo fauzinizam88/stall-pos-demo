@@ -12,29 +12,43 @@ const foods=[
 {id:11,n:'Mee / Kuey Teow Bandung',c:'Mee & lain-lain',d:'Pilih mee atau kuey teow bandung.',p:6,e:'🥣',q:0},
 {id:12,n:'Chicken Chop',c:'Western',d:'Hidangan chicken chop bersama sos.',p:12,e:'🍗',q:0},
 {id:13,n:'Nasi Goreng Chicken Chop',c:'Western',d:'Nasi goreng bersama chicken chop.',p:15,e:'🍛',q:0},
-{id:14,n:'Tambah Telur',c:'Tambahan',d:'Telur tambahan untuk mana-mana hidangan.',p:1,e:'🍳',q:0}
+{id:14,n:'Tambah Telur',c:'Tambahan',d:'Telur tambahan untuk mana-mana hidangan.',p:1,e:'🍳',q:0},
+{id:15,n:'Teh Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'🧋',q:0},
+{id:16,n:'Teh O Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'🥤',q:0},
+{id:17,n:'Nescafe Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'☕',q:0},
+{id:18,n:'Milo Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'🍫',q:0},
+{id:19,n:'Kopi Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'☕',q:0},
+{id:20,n:'Limau Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'🍋',q:0},
+{id:21,n:'Limau Asam Boi Ais',c:'Minuman',d:'RM2.00 minum di gerai · RM3.00 bungkus.',drink:true,e:'🍹',q:0}
 ];
 let cat='Semua',type='dine';
 const money=n=>new Intl.NumberFormat('en-MY',{style:'currency',currency:'MYR'}).format(n);
+const unitPrice=item=>item.drink?(type==='take'?3:2):item.p;
 const selected=()=>foods.filter(x=>x.q);
-const total=()=>selected().reduce((s,x)=>s+x.p*x.q,0);
-const count=()=>selected().reduce((s,x)=>s+x.q,0);
+const total=()=>selected().reduce((sum,item)=>sum+unitPrice(item)*item.q,0);
+const count=()=>selected().reduce((sum,item)=>sum+item.q,0);
 
 function render(){
   const cats=['Semua',...new Set(foods.map(x=>x.c))];
   chips.innerHTML=cats.map(x=>`<button class="chip ${x===cat?'on':''}" onclick="cat='${x.replace(/'/g,"\\'")}';render()">${x}</button>`).join('');
-  menuList.innerHTML=foods.filter(x=>cat==='Semua'||x.c===cat).map(x=>`
-    <article class="food">
+  menuList.innerHTML=foods.filter(x=>cat==='Semua'||x.c===cat).map(x=>{
+    const price=unitPrice(x);
+    const priceNote=x.drink?`<small class="price-note">${type==='take'?'Harga bungkus':'Harga minum di gerai'}</small>`:'';
+    return `<article class="food">
       <div class="emoji">${x.e}</div>
-      <div><h3>${x.n}</h3><p>${x.d}</p><div class="price">${money(x.p)}</div></div>
+      <div><h3>${x.n}</h3><p>${x.d}</p><div class="price">${money(price)} ${priceNote}</div></div>
       <div class="qty"><button aria-label="Kurangkan ${x.n}" onclick="qty(${x.id},-1)">−</button><span>${x.q}</span><button aria-label="Tambah ${x.n}" onclick="qty(${x.id},1)">+</button></div>
-    </article>`).join('');
-  const lines=selected().map(x=>`<div class="line"><span><b>${x.n}</b><br><small class="muted">${x.q} × ${money(x.p)}</small></span><b>${money(x.q*x.p)}</b></div>`).join('')||'<p class="muted">Troli anda masih kosong.</p>';
+    </article>`;
+  }).join('');
+  const lines=selected().map(x=>{
+    const price=unitPrice(x);
+    return `<div class="line"><span><b>${x.n}</b><br><small class="muted">${x.q} × ${money(price)}${x.drink?` · ${type==='take'?'bungkus':'minum di gerai'}`:''}</small></span><b>${money(x.q*price)}</b></div>`;
+  }).join('')||'<p class="muted">Troli anda masih kosong.</p>';
   cartLines.innerHTML=lines+`<div class="line total"><span>Jumlah</span><span>${money(total())}</span></div>`;
   paymentItems.innerHTML=lines;
   paymentTotal.textContent=money(total());
   cartSummary.textContent=`${count()} item · ${money(total())}`;
-  cartMeta.textContent=type==='dine'?`Meja ${tableNo.value||'—'} · Makan di sini`:'Pesanan bungkus';
+  cartMeta.textContent=type==='dine'?`Meja ${tableNo.value||'—'} · Makan/minum di sini`:'Pesanan bungkus';
   cartBar.style.display=document.querySelector('.view.active').id==='menu'&&count()?'flex':'none';
 }
 
@@ -70,7 +84,7 @@ function toast(m){
   clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),1900)
 }
 function downloadCSV(){
-  const csv='Pesanan,Pelanggan,Jenis,Jumlah,Status\n0723-A7K,Ahmad,Makan di sini,7.00,Disahkan\n0723-B2M,Siti,Bungkus,6.00,Sedang disediakan';
+  const csv='Pesanan,Pelanggan,Jenis,Jumlah,Status\n0723-A7K,Ahmad,Makan di sini,9.00,Disahkan\n0723-B2M,Siti,Bungkus,9.00,Sedang disediakan';
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
   a.download='jualan-gerai-teh-ais-nekman-demo.csv';a.click();toast('CSV demo dimuat turun')
 }
