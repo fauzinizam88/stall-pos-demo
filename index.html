@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#075b2a">
 <title>Gerai Teh Ais Nekman | POS Demo</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="variants.css">
 </head>
 <body>
 <div class="app">
@@ -33,7 +34,7 @@
 
   <div class="promo drinks">
     <div class="egg">🧋</div>
-    <div><b>Minuman RM2.00 di gerai · RM3.00 bungkus</b><small>Harga minuman berubah secara automatik mengikut jenis pesanan.</small></div>
+    <div><b>Minuman RM2.00 di gerai · RM3.00 bungkus</b><small>Pilih jenis minuman daripada satu menu dan harga berubah secara automatik.</small></div>
   </div>
 
   <div class="chips" id="chips"></div>
@@ -80,9 +81,9 @@
     <article class="card">
       <div class="order-head"><div><div class="order-no">#0723-A7K</div><div class="order-meta">Ahmad · Meja 04 · Makan/minum sini · 11:32 pagi</div></div><span id="adminBadge" class="status pending">Bayaran dihantar</span></div>
       <div class="items">
-        <div class="line"><span>1 × Nasi Goreng Kampung</span><b>RM6.00</b></div>
+        <div class="line"><span>1 × Nasi Goreng · Kampung</span><b>RM6.00</b></div>
         <div class="line"><span>1 × Tambah Telur</span><b>RM1.00</b></div>
-        <div class="line"><span>1 × Teh Ais</span><b>RM2.00</b></div>
+        <div class="line"><span>1 × Minuman · Teh Ais</span><b>RM2.00</b></div>
         <div class="line total"><span>Jumlah</span><span>RM9.00</span></div>
       </div>
       <div id="adminActions" class="actions"><button class="btn success" onclick="verifyPayment()">Sahkan bayaran</button><button class="btn danger" onclick="toast('Bayaran ditolak')">Tolak</button></div>
@@ -92,7 +93,7 @@
       <div class="order-head"><div><div class="order-no">#0723-B2M</div><div class="order-meta">Siti · Bungkus · 11:26 pagi</div></div><span class="status prep">Sedang disediakan</span></div>
       <div class="items">
         <div class="line"><span>1 × Kuey Teow / Mee Kerang</span><b>RM6.00</b></div>
-        <div class="line"><span>1 × Milo Ais (bungkus)</span><b>RM3.00</b></div>
+        <div class="line"><span>1 × Minuman · Milo Ais (bungkus)</span><b>RM3.00</b></div>
         <div class="line total"><span>Jumlah</span><span>RM9.00</span></div>
       </div>
       <div class="actions"><button class="btn primary" onclick="this.closest('article').querySelector('.status').textContent='Sedia';toast('Pesanan ditanda sedia')">Tanda sedia</button><button class="btn secondary" onclick="toast('Butiran pesanan dibuka')">Butiran</button></div>
@@ -107,7 +108,7 @@
     <div class="metric"><small>Purata pesanan</small><strong>RM7.64</strong><span class="muted">Hari ini</span></div>
     <div class="metric"><small>7 hari</small><strong>RM4,116</strong></div>
     <div class="metric"><small>Bulan ini</small><strong>RM14,960</strong></div>
-    <div class="metric wide"><small>Menu paling laris</small><strong>Nasi Goreng Kampung</strong><span class="muted">96 hidangan · RM576.00</span></div>
+    <div class="metric wide"><small>Menu paling laris</small><strong>Nasi Goreng · Kampung</strong><span class="muted">96 hidangan · RM576.00</span></div>
   </div>
   <div class="card bars">
     <h3 style="margin-top:0">Jualan 7 hari</h3>
