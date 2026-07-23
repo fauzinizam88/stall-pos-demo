@@ -79,12 +79,16 @@ main{padding:15px 14px 24px}
 .pending{background:#fff0d2;color:#8a5600}
 .paid,.ready{background:#e5f4e9;color:#0c6330}
 .prep{background:#e9efff;color:#304f9b}
+.rejected{background:#fdecea;color:var(--red)}
 .timeline{margin-top:12px}
 .step{display:grid;grid-template-columns:28px 1fr;gap:9px;padding:7px 0}
 .dot{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#e5ebe5;color:#788178;font-size:11px}
 .step.done .dot{background:var(--green);color:#fff}
+.step.current .dot{background:#fff0d2;color:#8a5600;border:1px solid #efc96f}
+.step.rejected .dot{background:#fdecea;color:var(--red);border:1px solid #efb6b1}
 .step b{display:block}
 .step small{color:var(--muted)}
+.live-updated{display:block;margin-top:-3px;color:var(--muted);font-size:10px}
 .filters{position:sticky;top:69px;z-index:15;background:var(--bg);padding:3px 0 11px;display:flex;gap:7px;overflow:auto}
 .filter{border:1px solid var(--line);background:#fff;border-radius:99px;padding:8px 11px;white-space:nowrap}
 .filter.on{background:var(--green-dark);color:#fff;border-color:var(--green-dark)}
@@ -92,6 +96,9 @@ main{padding:15px 14px 24px}
 .order-no{font-size:18px;font-weight:900}
 .order-meta{font-size:12px;color:var(--muted)}
 .items{padding:9px 0}
+.order-note{margin:0 0 12px;padding:9px 10px;border-radius:11px;background:#fff7e5;color:#6d521e;font-size:12px}
+.empty-orders{text-align:center;padding:28px 18px}
+.empty-orders p{margin:5px 0 0}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .metric{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px}
