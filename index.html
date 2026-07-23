@@ -1,32 +1,134 @@
 <!doctype html>
-<html lang="en">
+<html lang="ms">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#126342">
-<title>Stall POS Demo</title>
-<style>
-:root{--bg:#f4f7f5;--card:#fff;--ink:#16221b;--muted:#68736c;--line:#dfe7e2;--green:#16734c;--green2:#105b3b;--soft:#eaf4ee;--amber:#a86608;--red:#b43d3d;--radius:18px;--shadow:0 10px 30px #10201812}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh;max-width:520px;margin:auto;background:var(--bg);padding-bottom:94px}.top{position:sticky;top:0;z-index:20;padding:14px 16px;background:#ffffffee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:11px;align-items:center}.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,#24845a,#0e5135);font-size:21px}.brand b{display:block;font-size:16px}.brand small{color:var(--muted)}.demo{font-size:11px;font-weight:800;padding:6px 9px;border-radius:99px;background:var(--soft);color:var(--green)}main{padding:18px 14px}.view{display:none}.view.active{display:block}.hero{background:#13251b;color:#fff;border-radius:22px;padding:20px;margin-bottom:17px;box-shadow:var(--shadow)}.hero h1{font-size:27px;line-height:1.12;margin:0 0 7px}.hero p{margin:0;color:#c9d7cf}.chips{display:flex;gap:8px;overflow:auto;padding:2px 0 14px;scrollbar-width:none}.chip{border:1px solid var(--line);background:#fff;padding:9px 13px;border-radius:99px;white-space:nowrap;color:var(--ink)}.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}.menu{display:grid;gap:11px}.food{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px;display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;box-shadow:0 3px 14px #10201808}.emoji{width:54px;height:54px;border-radius:16px;background:#eef3f0;display:grid;place-items:center;font-size:27px}.food h3{font-size:15px;margin:0 0 3px}.food p{font-size:12px;color:var(--muted);margin:0 0 7px}.price{font-weight:800}.qty{display:flex;align-items:center;gap:8px;background:#eef3f0;border-radius:99px;padding:4px}.qty button{border:0;background:#fff;border-radius:50%;width:31px;height:31px;font-size:18px;box-shadow:0 2px 7px #0000000d}.qty span{min-width:15px;text-align:center;font-weight:800}.cartbar{position:fixed;z-index:25;bottom:78px;left:50%;transform:translateX(-50%);width:min(492px,calc(100% - 28px));background:#14241b;color:#fff;border-radius:18px;padding:13px 14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 18px 45px #08140d4a}.cartbar small{display:block;color:#bbc9c0}.btn{border:0;border-radius:12px;min-height:44px;padding:0 15px;font-weight:800}.primary{background:var(--green);color:#fff}.primary:hover{background:var(--green2)}.secondary{background:#fff;border:1px solid var(--line);color:var(--ink)}.danger{background:#fdecec;color:var(--red)}.full{width:100%}.section-title{display:flex;align-items:end;justify-content:space-between;margin:2px 2px 13px}.section-title h2{margin:0;font-size:22px}.section-title p{margin:3px 0 0;color:var(--muted)}.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:0 3px 14px #10201808;margin-bottom:12px}.line{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.line:last-child{border:0}.muted{color:var(--muted)}.total{font-size:20px;font-weight:900}.field{margin:13px 0}.field label{display:block;font-weight:750;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px #16734c18}.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.seg button{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px;font-weight:750}.seg button.on{background:var(--soft);border-color:#7eb99a;color:var(--green2)}.notice{padding:12px;border-radius:13px;background:#fff7e8;color:#805006;font-size:12px}.qr{width:210px;aspect-ratio:1;margin:16px auto;background:repeating-conic-gradient(#111 0 25%,#fff 0 50%) 0/22px 22px;border:12px solid #fff;box-shadow:0 0 0 1px var(--line);display:grid;place-items:center}.qr span{background:#fff;padding:9px;text-align:center;font-size:11px;font-weight:850}.status{display:inline-flex;padding:6px 9px;border-radius:99px;font-size:11px;font-weight:850}.pending{background:#fff2d8;color:#895706}.paid,.ready{background:#e6f5ec;color:#12643f}.prep{background:#e9efff;color:#314f9e}.timeline{position:relative;margin-top:12px}.step{display:grid;grid-template-columns:28px 1fr;gap:9px;padding:7px 0}.dot{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#e5ebe7;color:#77817b;font-size:11px}.step.done .dot{background:var(--green);color:#fff}.step b{display:block}.step small{color:var(--muted)}.filters{position:sticky;top:72px;z-index:10;background:var(--bg);padding:3px 0 11px;display:flex;gap:7px;overflow:auto}.filter{border:1px solid var(--line);background:#fff;border-radius:99px;padding:8px 11px;white-space:nowrap}.filter.on{background:var(--ink);color:#fff;border-color:var(--ink)}.order-head{display:flex;justify-content:space-between;gap:10px}.order-no{font-size:18px;font-weight:900}.order-meta{font-size:12px;color:var(--muted)}.items{padding:10px 0}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}.metric small{color:var(--muted)}.metric strong{display:block;font-size:22px;margin-top:3px}.metric.wide{grid-column:1/-1}.bars{margin-top:12px}.barrow{display:grid;grid-template-columns:38px 1fr 65px;gap:8px;align-items:center;margin:10px 0;font-size:12px}.track{height:8px;background:#e9eeeb;border-radius:99px;overflow:hidden}.fill{height:100%;background:var(--green);border-radius:99px}.bottom{position:fixed;z-index:30;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);height:70px;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:env(safe-area-inset-bottom)}.bottom button{border:0;background:transparent;color:var(--muted);font-size:11px}.bottom button span{display:block;font-size:20px;margin-bottom:2px}.bottom button.on{color:var(--green);font-weight:850}.toast{position:fixed;z-index:50;left:50%;bottom:88px;transform:translate(-50%,20px);background:#14241b;color:#fff;border-radius:12px;padding:11px 15px;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}@media(min-width:800px){body{padding:24px}.app{border-radius:25px;overflow:hidden;box-shadow:0 20px 60px #10201824}.bottom{bottom:24px;border-radius:0 0 25px 25px}.cartbar{bottom:104px}}
-</style>
+<meta name="theme-color" content="#075b2a">
+<title>Gerai Teh Ais Nekman | POS Demo</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="app">
-<header class="top"><div class="brand"><div class="logo">🍽️</div><div><b>My Friend Food Stall</b><small>Self-ordering POS prototype</small></div></div><span class="demo">DEMO</span></header>
+<header class="top">
+  <div class="brand"><div class="logo">🧋</div><div><b>Gerai Teh Ais Nekman</b><small>Pesanan sendiri · Demo POS</small></div></div>
+  <span class="demo">DEMO</span>
+</header>
+
 <main>
-<section id="menu" class="view active"><div class="hero"><h1>Good food,<br>without the queue.</h1><p>Choose your items and pay using DuitNow QR.</p></div><div class="chips" id="chips"></div><div class="menu" id="menuList"></div></section>
-<section id="cart" class="view"><div class="section-title"><div><h2>Your order</h2><p>Review before placing the order.</p></div></div><div class="card" id="cartLines"></div><div class="card"><div class="field"><label>Your name</label><input id="customerName" value="Ahmad" placeholder="Enter your name"></div><div class="field"><label>Order type</label><div class="seg"><button id="dineBtn" class="on" onclick="setType('dine')">Dine in</button><button id="takeBtn" onclick="setType('take')">Takeaway</button></div></div><div class="field" id="tableField"><label>Table / desk number</label><input id="tableNo" value="04"></div><div class="field"><label>Remarks <span class="muted">(optional)</span></label><textarea rows="2" placeholder="Example: less spicy"></textarea></div><button class="btn primary full" onclick="placeOrder()">Place order</button></div></section>
-<section id="payment" class="view"><div class="section-title"><div><h2>Order 0723-A7K</h2><p>Complete payment and track preparation.</p></div><span id="payBadge" class="status pending">Awaiting payment</span></div><div class="card"><div id="paymentItems"></div><div class="line total"><span>Total</span><span id="paymentTotal"></span></div></div><div class="card"><h3 style="margin:0">Pay with DuitNow QR</h3><div class="qr"><span>DEMO QR<br>Replace with merchant QR</span></div><div class="notice">This demonstration does not process money. In the actual system, the stall owner must verify payment manually.</div><div class="field"><label>Payment reference <span class="muted">(optional)</span></label><input placeholder="Example: 8F21XX"></div><button id="paidBtn" class="btn primary full" onclick="paid()">I have paid</button></div><div class="card"><h3 style="margin-top:0">Order progress</h3><div class="timeline"><div class="step done"><div class="dot">✓</div><div><b>Order received</b><small>Your order has been created.</small></div></div><div id="payStep" class="step"><div class="dot">2</div><div><b>Payment verification</b><small>Waiting for your confirmation.</small></div></div><div class="step"><div class="dot">3</div><div><b>Preparing</b><small>The stall will prepare your food.</small></div></div><div class="step"><div class="dot">4</div><div><b>Ready</b><small>Collect your order or wait at the table.</small></div></div></div></div></section>
-<section id="orders" class="view"><div class="section-title"><div><h2>Live orders</h2><p>Mobile admin operations.</p></div><span class="status pending">2 checking</span></div><div class="filters"><button class="filter on">Active</button><button class="filter">Payment</button><button class="filter">Preparing</button><button class="filter">Ready</button></div><div id="ordersList"><article class="card"><div class="order-head"><div><div class="order-no">#0723-A7K</div><div class="order-meta">Ahmad · Table 04 · Dine in · 8:35 AM</div></div><span id="adminBadge" class="status pending">Payment submitted</span></div><div class="items"><div class="line"><span>2 × Nasi Ayam</span><b>RM15.00</b></div><div class="line"><span>1 × Teh Ais</span><b>RM2.00</b></div><div class="line total"><span>Total</span><span>RM17.00</span></div></div><div id="adminActions" class="actions"><button class="btn primary" onclick="verifyPayment()">Verify payment</button><button class="btn danger" onclick="toast('Payment rejected')">Reject</button></div></article><article class="card"><div class="order-head"><div><div class="order-no">#0723-B2M</div><div class="order-meta">Siti · Takeaway · 8:29 AM</div></div><span class="status prep">Preparing</span></div><div class="items"><div class="line"><span>1 × Mee Goreng</span><b>RM6.50</b></div><div class="line"><span>1 × Milo Ais</span><b>RM3.00</b></div><div class="line total"><span>Total</span><span>RM9.50</span></div></div><div class="actions"><button class="btn primary" onclick="this.closest('article').querySelector('.status').textContent='Ready';toast('Order marked ready')">Mark ready</button><button class="btn secondary" onclick="toast('Order details opened')">Details</button></div></article></div></section>
-<section id="sales" class="view"><div class="section-title"><div><h2>Sales overview</h2><p>Verified, non-cancelled orders only.</p></div><button class="btn secondary" onclick="downloadCSV()">Export CSV</button></div><div class="metrics"><div class="metric"><small>Today</small><strong>RM685.50</strong><span class="muted">73 orders</span></div><div class="metric"><small>Average order</small><strong>RM9.39</strong><span class="muted">Today</span></div><div class="metric"><small>Last 7 days</small><strong>RM4,280</strong></div><div class="metric"><small>This month</small><strong>RM15,740</strong></div><div class="metric wide"><small>Best-selling item</small><strong>Nasi Ayam</strong><span class="muted">86 sold · RM645.00</span></div></div><div class="card bars"><h3 style="margin-top:0">Last 7 days</h3><div class="barrow"><span>Fri</span><div class="track"><div class="fill" style="width:62%"></div></div><b>RM558</b></div><div class="barrow"><span>Sat</span><div class="track"><div class="fill" style="width:92%"></div></div><b>RM828</b></div><div class="barrow"><span>Sun</span><div class="track"><div class="fill" style="width:83%"></div></div><b>RM748</b></div><div class="barrow"><span>Mon</span><div class="track"><div class="fill" style="width:55%"></div></div><b>RM496</b></div><div class="barrow"><span>Tue</span><div class="track"><div class="fill" style="width:68%"></div></div><b>RM610</b></div><div class="barrow"><span>Wed</span><div class="track"><div class="fill" style="width:74%"></div></div><b>RM665</b></div><div class="barrow"><span>Thu</span><div class="track"><div class="fill" style="width:76%"></div></div><b>RM686</b></div></div></section>
+<section id="menu" class="view active">
+  <div class="hero">
+    <div class="hero-kicker">Gerai Teh Ais Nekman</div>
+    <h1>Pilih makanan.<br>Pesan dari meja.</h1>
+    <p>Semak jumlah pesanan dan bayar menggunakan DuitNow QR.</p>
+    <div class="hero-actions">
+      <button class="btn light" onclick="document.getElementById('chips').scrollIntoView({behavior:'smooth'})">Mula pilih menu</button>
+      <button class="btn ghost" onclick="show('orders')">Paparan admin</button>
+    </div>
+  </div>
+
+  <div class="promo">
+    <div class="egg">🍳</div>
+    <div><b>Tambah telur hanya RM1.00</b><small>Pilih “Tambah Telur” mengikut kuantiti hidangan.</small></div>
+  </div>
+
+  <div class="chips" id="chips"></div>
+  <div class="menu" id="menuList"></div>
+</section>
+
+<section id="cart" class="view">
+  <div class="section-title"><div><h2>Pesanan anda</h2><p>Semak sebelum menghantar pesanan.</p></div></div>
+  <div class="card" id="cartLines"></div>
+  <div class="card">
+    <div class="field"><label>Nama pelanggan</label><input id="customerName" value="Ahmad" placeholder="Masukkan nama"></div>
+    <div class="field"><label>Jenis pesanan</label><div class="seg"><button id="dineBtn" class="on" onclick="setType('dine')">Makan di sini</button><button id="takeBtn" onclick="setType('take')">Bungkus</button></div></div>
+    <div class="field" id="tableField"><label>Nombor meja</label><input id="tableNo" value="04" placeholder="Contoh: 04"></div>
+    <div class="field"><label>Catatan <span class="muted">(pilihan)</span></label><textarea rows="2" placeholder="Contoh: kurang pedas"></textarea></div>
+    <button class="btn primary full" onclick="placeOrder()">Hantar pesanan</button>
+  </div>
+</section>
+
+<section id="payment" class="view">
+  <div class="section-title"><div><h2>Pesanan 0723-A7K</h2><p>Bayar dan semak status penyediaan.</p></div><span id="payBadge" class="status pending">Menunggu bayaran</span></div>
+  <div class="card"><div id="paymentItems"></div><div class="line total"><span>Jumlah</span><span id="paymentTotal"></span></div></div>
+  <div class="card">
+    <h3 style="margin:0">Bayar menggunakan DuitNow QR</h3>
+    <div class="qr"><span>QR DEMO<br>Ganti dengan QR peniaga</span></div>
+    <div class="notice">Prototaip ini tidak memproses wang. Pemilik gerai perlu mengesahkan bayaran secara manual.</div>
+    <div class="field"><label>Rujukan bayaran <span class="muted">(pilihan)</span></label><input placeholder="Contoh: 8F21XX"></div>
+    <button id="paidBtn" class="btn primary full" onclick="paid()">Saya sudah bayar</button>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Kemajuan pesanan</h3>
+    <div class="timeline">
+      <div class="step done"><div class="dot">✓</div><div><b>Pesanan diterima</b><small>Pesanan anda telah dihantar.</small></div></div>
+      <div id="payStep" class="step"><div class="dot">2</div><div><b>Pengesahan bayaran</b><small>Menunggu pengesahan pelanggan.</small></div></div>
+      <div class="step"><div class="dot">3</div><div><b>Sedang disediakan</b><small>Gerai sedang menyediakan makanan.</small></div></div>
+      <div class="step"><div class="dot">4</div><div><b>Sedia</b><small>Ambil pesanan atau tunggu di meja.</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="orders" class="view">
+  <div class="section-title"><div><h2>Pesanan langsung</h2><p>Paparan mudah alih untuk pemilik gerai.</p></div><span class="status pending">2 semakan</span></div>
+  <div class="filters"><button class="filter on">Aktif</button><button class="filter">Bayaran</button><button class="filter">Disediakan</button><button class="filter">Sedia</button></div>
+  <div id="ordersList">
+    <article class="card">
+      <div class="order-head"><div><div class="order-no">#0723-A7K</div><div class="order-meta">Ahmad · Meja 04 · Makan sini · 11:32 pagi</div></div><span id="adminBadge" class="status pending">Bayaran dihantar</span></div>
+      <div class="items">
+        <div class="line"><span>1 × Nasi Goreng Kampung</span><b>RM6.00</b></div>
+        <div class="line"><span>1 × Tambah Telur</span><b>RM1.00</b></div>
+        <div class="line total"><span>Jumlah</span><span>RM7.00</span></div>
+      </div>
+      <div id="adminActions" class="actions"><button class="btn success" onclick="verifyPayment()">Sahkan bayaran</button><button class="btn danger" onclick="toast('Bayaran ditolak')">Tolak</button></div>
+    </article>
+
+    <article class="card">
+      <div class="order-head"><div><div class="order-no">#0723-B2M</div><div class="order-meta">Siti · Bungkus · 11:26 pagi</div></div><span class="status prep">Sedang disediakan</span></div>
+      <div class="items">
+        <div class="line"><span>1 × Kuey Teow / Mee Kerang</span><b>RM6.00</b></div>
+        <div class="line total"><span>Jumlah</span><span>RM6.00</span></div>
+      </div>
+      <div class="actions"><button class="btn primary" onclick="this.closest('article').querySelector('.status').textContent='Sedia';toast('Pesanan ditanda sedia')">Tanda sedia</button><button class="btn secondary" onclick="toast('Butiran pesanan dibuka')">Butiran</button></div>
+    </article>
+  </div>
+</section>
+
+<section id="sales" class="view">
+  <div class="section-title"><div><h2>Ringkasan jualan</h2><p>Pesanan berbayar dan tidak dibatalkan sahaja.</p></div><button class="btn secondary" onclick="downloadCSV()">Eksport CSV</button></div>
+  <div class="metrics">
+    <div class="metric"><small>Hari ini</small><strong>RM642.00</strong><span class="muted">84 pesanan</span></div>
+    <div class="metric"><small>Purata pesanan</small><strong>RM7.64</strong><span class="muted">Hari ini</span></div>
+    <div class="metric"><small>7 hari</small><strong>RM4,116</strong></div>
+    <div class="metric"><small>Bulan ini</small><strong>RM14,960</strong></div>
+    <div class="metric wide"><small>Menu paling laris</small><strong>Nasi Goreng Kampung</strong><span class="muted">96 hidangan · RM576.00</span></div>
+  </div>
+  <div class="card bars">
+    <h3 style="margin-top:0">Jualan 7 hari</h3>
+    <div class="barrow"><span>Jum</span><div class="track"><div class="fill" style="width:72%"></div></div><b>RM590</b></div>
+    <div class="barrow"><span>Sab</span><div class="track"><div class="fill" style="width:91%"></div></div><b>RM742</b></div>
+    <div class="barrow"><span>Aha</span><div class="track"><div class="fill" style="width:82%"></div></div><b>RM668</b></div>
+    <div class="barrow"><span>Isn</span><div class="track"><div class="fill" style="width:58%"></div></div><b>RM474</b></div>
+    <div class="barrow"><span>Sel</span><div class="track"><div class="fill" style="width:67%"></div></div><b>RM548</b></div>
+    <div class="barrow"><span>Rab</span><div class="track"><div class="fill" style="width:61%"></div></div><b>RM502</b></div>
+    <div class="barrow"><span>Kha</span><div class="track"><div class="fill" style="width:79%"></div></div><b>RM642</b></div>
+  </div>
+</section>
 </main>
-<div id="cartBar" class="cartbar"><div><b id="cartSummary">3 items · RM17.00</b><small>Table 04 · Dine in</small></div><button class="btn primary" onclick="show('cart')">View cart</button></div>
-<nav class="bottom"><button class="on" data-view="menu" onclick="show('menu')"><span>🍽️</span>Menu</button><button data-view="cart" onclick="show('cart')"><span>🛒</span>Cart</button><button data-view="orders" onclick="show('orders')"><span>📋</span>Orders</button><button data-view="sales" onclick="show('sales')"><span>📊</span>Sales</button></nav>
-<div id="toast" class="toast">Updated</div>
+
+<div id="cartBar" class="cartbar">
+  <div><b id="cartSummary">0 item · RM0.00</b><small id="cartMeta">Meja 04 · Makan di sini</small></div>
+  <button class="btn primary" onclick="show('cart')">Lihat troli</button>
 </div>
-<script>
-const foods=[{id:1,n:'Nasi Lemak',c:'Rice',d:'Coconut rice, sambal, egg and anchovies.',p:3,e:'🍚',q:0},{id:2,n:'Nasi Ayam',c:'Rice',d:'Fragrant rice with roasted chicken.',p:7.5,e:'🍗',q:2},{id:3,n:'Mee Goreng',c:'Noodles',d:'Wok-fried noodles with vegetables and egg.',p:6.5,e:'🍜',q:0},{id:4,n:'Teh Ais',c:'Drinks',d:'Classic Malaysian iced milk tea.',p:2,e:'🥤',q:1},{id:5,n:'Milo Ais',c:'Drinks',d:'Cold chocolate malt drink.',p:3,e:'🧋',q:0},{id:6,n:'Air Mineral',c:'Drinks',d:'Chilled bottled mineral water.',p:1.5,e:'💧',q:0}];let cat='All',type='dine';const money=n=>new Intl.NumberFormat('en-MY',{style:'currency',currency:'MYR'}).format(n);const selected=()=>foods.filter(x=>x.q);const total=()=>selected().reduce((s,x)=>s+x.p*x.q,0);const count=()=>selected().reduce((s,x)=>s+x.q,0);
-function render(){const cats=['All',...new Set(foods.map(x=>x.c))];chips.innerHTML=cats.map(x=>`<button class="chip ${x===cat?'on':''}" onclick="cat='${x}';render()">${x}</button>`).join('');menuList.innerHTML=foods.filter(x=>cat==='All'||x.c===cat).map(x=>`<article class="food"><div class="emoji">${x.e}</div><div><h3>${x.n}</h3><p>${x.d}</p><div class="price">${money(x.p)}</div></div><div class="qty"><button onclick="qty(${x.id},-1)">−</button><span>${x.q}</span><button onclick="qty(${x.id},1)">+</button></div></article>`).join('');const lines=selected().map(x=>`<div class="line"><span><b>${x.n}</b><br><small class="muted">${x.q} × ${money(x.p)}</small></span><b>${money(x.q*x.p)}</b></div>`).join('')||'<p class="muted">Your cart is empty.</p>';cartLines.innerHTML=lines+`<div class="line total"><span>Total</span><span>${money(total())}</span></div>`;paymentItems.innerHTML=lines;paymentTotal.textContent=money(total());cartSummary.textContent=`${count()} items · ${money(total())}`;cartBar.style.display=['menu'].includes(document.querySelector('.view.active').id)&&count()?'flex':'none'}
-function qty(id,d){const x=foods.find(f=>f.id===id);x.q=Math.max(0,Math.min(20,x.q+d));render()}function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('on',b.dataset.view===id));scrollTo({top:0,behavior:'smooth'});render()}function setType(v){type=v;dineBtn.classList.toggle('on',v==='dine');takeBtn.classList.toggle('on',v==='take');tableField.style.display=v==='dine'?'block':'none'}function placeOrder(){if(!count())return toast('Add at least one item first');if(!customerName.value.trim())return toast('Please enter your name');show('payment');toast('Order created successfully')}function paid(){payBadge.textContent='Payment submitted';payBadge.className='status pending';payStep.classList.add('done');payStep.querySelector('.dot').textContent='✓';payStep.querySelector('small').textContent='Waiting for manual verification by the stall owner.';paidBtn.disabled=true;paidBtn.textContent='Confirmation submitted';toast('Payment confirmation submitted')}function verifyPayment(){adminBadge.textContent='Payment verified';adminBadge.className='status paid';adminActions.innerHTML='<button class="btn primary" onclick="this.textContent=\'Preparing\';toast(\'Order preparation started\')">Start preparing</button><button class="btn secondary" onclick="toast(\'Order details opened\')">Details</button>';payBadge.textContent='Payment verified';payBadge.className='status paid';toast('Payment verified')}function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),1900)}function downloadCSV(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['Order,Customer,Type,Total,Status\n0723-A7K,Ahmad,Dine in,17.00,Verified\n0723-B2M,Siti,Takeaway,9.50,Preparing'],{type:'text/csv'}));a.download='stall-sales-demo.csv';a.click();toast('Demo CSV downloaded')}render();
-</script>
+
+<nav class="bottom">
+  <button class="on" data-view="menu" onclick="show('menu')"><span>🍽️</span>Menu</button>
+  <button data-view="cart" onclick="show('cart')"><span>🛒</span>Troli</button>
+  <button data-view="orders" onclick="show('orders')"><span>📋</span>Admin</button>
+  <button data-view="sales" onclick="show('sales')"><span>📊</span>Jualan</button>
+</nav>
+<div id="toast" class="toast">Dikemas kini</div>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
