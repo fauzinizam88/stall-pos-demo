@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="variants.css">
 <link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="live-status.css">
 </head>
 <body>
 <div class="app">
@@ -44,7 +45,7 @@
 </section>
 
 <section id="payment" class="view">
-  <div class="section-title"><div><h2>Pesanan 0723-A7K</h2><p>Bayar dan semak status penyediaan.</p></div><span id="payBadge" class="status pending">Menunggu bayaran</span></div>
+  <div class="section-title"><div><h2>Pesanan 0723-A7K</h2><p>Bayar dan semak status penyediaan.</p></div><span id="payBadge" class="status pending">Bayaran dihantar</span></div>
   <div class="card"><div id="paymentItems"></div><div class="line total"><span>Jumlah</span><span id="paymentTotal"></span></div></div>
   <div class="card">
     <h3 style="margin:0">Bayar menggunakan DuitNow QR</h3>
@@ -55,11 +56,12 @@
   </div>
   <div class="card">
     <h3 style="margin-top:0">Kemajuan pesanan</h3>
+    <small id="liveUpdatedAt" class="live-updated">Status dikemas kini secara langsung.</small>
     <div class="timeline">
-      <div class="step done"><div class="dot">✓</div><div><b>Pesanan diterima</b><small>Pesanan anda telah dihantar.</small></div></div>
-      <div id="payStep" class="step"><div class="dot">2</div><div><b>Pengesahan bayaran</b><small>Menunggu pengesahan pelanggan.</small></div></div>
-      <div class="step"><div class="dot">3</div><div><b>Sedang disediakan</b><small>Gerai sedang menyediakan makanan dan minuman.</small></div></div>
-      <div class="step"><div class="dot">4</div><div><b>Sedia</b><small>Ambil pesanan atau tunggu di meja.</small></div></div>
+      <div id="receivedStep" class="step done"><div class="dot">✓</div><div><b>Pesanan diterima</b><small>Pesanan anda telah dihantar.</small></div></div>
+      <div id="paymentStep" class="step current"><div class="dot">2</div><div><b>Pengesahan bayaran</b><small>Maklumat bayaran dihantar. Menunggu pengesahan pemilik gerai.</small></div></div>
+      <div id="preparingStep" class="step"><div class="dot">3</div><div><b>Sedang disediakan</b><small>Pesanan akan disediakan selepas bayaran disahkan.</small></div></div>
+      <div id="readyStep" class="step"><div class="dot">4</div><div><b>Sedia</b><small>Status sedia akan dipaparkan di sini.</small></div></div>
     </div>
   </div>
 </section>
@@ -79,7 +81,7 @@
         <div class="line"><span>1 × Minuman · Teh Ais</span><b>RM2.00</b></div>
         <div class="line total"><span>Jumlah</span><span>RM9.00</span></div>
       </div>
-      <div id="adminActions" class="actions"><button class="btn success" onclick="verifyPayment()">Sahkan bayaran</button><button class="btn danger" onclick="toast('Bayaran ditolak')">Tolak</button></div>
+      <div id="adminActions" class="actions"><button class="btn success" type="button" onclick="verifyPayment()">Sahkan bayaran</button><button class="btn danger" type="button" onclick="rejectPayment()">Tolak</button></div>
     </article>
 
     <article class="card">
@@ -150,6 +152,7 @@
 </div>
 
 <script src="app.js"></script>
+<script src="order-status.js"></script>
 <script src="admin-auth.js"></script>
 </body>
 </html>
