@@ -2,7 +2,7 @@ const products = [
   {
     id: 'nasi-goreng',
     n: 'Nasi Goreng',
-    c: 'Nasi',
+    c: 'Utama',
     d: 'Pilih jenis nasi goreng sebelum menambah ke troli.',
     p: 6,
     e: '🍚',
@@ -12,7 +12,7 @@ const products = [
   {
     id: 'mee-kuey-teow',
     n: 'Mee & Kuey Teow',
-    c: 'Mee & lain-lain',
+    c: 'Utama',
     d: 'Pilih jenis mee atau kuey teow sebelum menambah ke troli.',
     p: 6,
     e: '🍜',
@@ -28,19 +28,24 @@ const products = [
     ],
     selectedVariant: 'Mee Goreng'
   },
-  {id:'chicken-chop',n:'Chicken Chop',c:'Western',d:'Hidangan chicken chop bersama sos.',p:12,e:'🍗'},
-  {id:'nasi-chicken-chop',n:'Nasi Goreng Chicken Chop',c:'Western',d:'Nasi goreng bersama chicken chop.',p:15,e:'🍛'},
-  {id:'tambah-telur',n:'Tambah Telur',c:'Tambahan',d:'Telur tambahan untuk mana-mana hidangan.',p:1,e:'🍳'},
+  {id:'chicken-chop',n:'Chicken Chop',c:'Utama',d:'Hidangan chicken chop bersama sos.',p:12,e:'🍗'},
+  {id:'nasi-chicken-chop',n:'Nasi Goreng Chicken Chop',c:'Utama',d:'Nasi goreng bersama chicken chop.',p:15,e:'🍛'},
   {
     id: 'minuman',
     n: 'Minuman',
-    c: 'Minuman',
+    c: 'Utama',
     d: 'Pilih jenis minuman. RM2.00 di gerai atau RM3.00 bungkus.',
     drink: true,
     e: '🧋',
     variants: ['Teh Ais', 'Teh O Ais', 'Nescafe Ais', 'Milo Ais', 'Kopi Ais', 'Limau Ais', 'Limau Asam Boi Ais'],
     selectedVariant: 'Teh Ais'
-  }
+  },
+  {id:'tambah-telur',n:'Tambah Telur',c:'Tambahan',d:'Telur tambahan untuk hidangan pilihan.',p:1,e:'🍳'},
+  {id:'tambah-ayam',n:'Tambah Ayam',c:'Tambahan',d:'Ayam tambahan untuk hidangan pilihan.',p:3,e:'🍗'},
+  {id:'tambah-ikan-masin',n:'Tambah Ikan Masin',c:'Tambahan',d:'Ikan masin tambahan untuk hidangan pilihan.',p:2,e:'🐟'},
+  {id:'tambah-udang',n:'Tambah Udang',c:'Tambahan',d:'Udang tambahan untuk hidangan pilihan.',p:3,e:'🍤'},
+  {id:'tambah-kerang',n:'Tambah Kerang',c:'Tambahan',d:'Kerang tambahan untuk hidangan pilihan.',p:2,e:'🦪'},
+  {id:'tambah-sotong',n:'Tambah Sotong',c:'Tambahan',d:'Sotong tambahan untuk hidangan pilihan.',p:3,e:'🦑'}
 ];
 
 const cart = Object.create(null);
@@ -127,8 +132,25 @@ function renderProduct(product) {
   </article>`;
 }
 
+function renderMenuGroup(group) {
+  const isMain = group === 'Utama';
+  const description = isMain
+    ? 'Pilih makanan atau minuman utama.'
+    : 'Tambah mengikut bilangan hidangan yang diperlukan.';
+  const icon = isMain ? '🍽️' : '➕';
+  const items = products.filter(product => product.c === group).map(renderProduct).join('');
+
+  return `<section class="menu-group">
+    <div class="menu-group-heading">
+      <span class="menu-group-icon">${icon}</span>
+      <div><h2>${group}</h2><p>${description}</p></div>
+    </div>
+    <div class="menu-group-list">${items}</div>
+  </section>`;
+}
+
 function render() {
-  menuList.innerHTML = products.map(renderProduct).join('');
+  menuList.innerHTML = ['Utama', 'Tambahan'].map(renderMenuGroup).join('');
 
   const lines = selectedLines().map(line =>
     `<div class="line"><span><b>${line.name}</b><br><small class="muted">${line.quantity} × ${money(line.price)}${line.product.drink ? ` · ${type === 'take' ? 'bungkus' : 'minum di gerai'}` : ''}</small></span><b>${money(line.quantity * line.price)}</b></div>`
@@ -217,6 +239,13 @@ function downloadCSV() {
   link.download = 'jualan-gerai-teh-ais-nekman-demo.csv';
   link.click();
   toast('CSV demo dimuat turun');
+}
+
+const addOnPromo = document.querySelector('.promo:not(.drinks)');
+if (addOnPromo) {
+  addOnPromo.querySelector('.egg').textContent = '➕';
+  addOnPromo.querySelector('b').textContent = 'Pilihan tambahan RM1.00 hingga RM3.00';
+  addOnPromo.querySelector('small').textContent = 'Tambah telur, ayam, ikan masin, udang, kerang atau sotong.';
 }
 
 tableNo.addEventListener('input', render);
