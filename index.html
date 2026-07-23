@@ -50,7 +50,7 @@
     <h3 style="margin:0">Bayar menggunakan DuitNow QR</h3>
     <div class="qr"><span>QR DEMO<br>Ganti dengan QR peniaga</span></div>
     <div class="notice">Prototaip ini tidak memproses wang. Pemilik gerai perlu mengesahkan bayaran secara manual.</div>
-    <div class="field"><label>Rujukan bayaran <span class="muted">(pilihan)</span></label><input placeholder="Contoh: 8F21XX"></div>
+    <div class="field"><label for="paymentReference">Rujukan bayaran</label><input id="paymentReference" value="0723-A7K" readonly aria-readonly="true"><small class="muted">Nombor pesanan dimasukkan secara automatik. Gunakan rujukan ini semasa membuat bayaran.</small></div>
     <button id="paidBtn" class="btn primary full" onclick="paid()">Saya sudah bayar</button>
   </div>
   <div class="card">
